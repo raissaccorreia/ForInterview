@@ -33,6 +33,23 @@ const howSumMemo = (targetSum, numbers, memo = {}) => {
     return null;
 }
 
+//tabulation
+
+const howSumTab = (targetSum, numbers) => {
+
+    const table = Array(targetSum + 1).fill(null);
+    table[0] = [];
+
+    for (let i = 0; i <= targetSum; i++) {
+        if (table[i] !== null) {
+            for (let num of numbers) {
+                table[i + num] = [...table[i], num];
+            }
+        }
+    }
+    return table[targetSum];
+}
+
 console.log(howSumMemo(7, [2,3]));
 console.log(howSumMemo(300, [7,14]));
 console.log(howSumMemo(8, [2,3,5]));

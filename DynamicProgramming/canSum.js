@@ -32,6 +32,20 @@ const canSumMemo = (targetSum, numbers, memo = {}) => {
     return false;
 }
 
+// tabulation
+const canSumTab = (targetSum, numbers) => {
+    const table = Array(targetSum + 1).fill(false);
+    table[0] = true;
+    for (let i = 0; i <= targetSum; i++) {
+        if (table[i]) {
+            for (let num of numbers) {
+                table[i + num] = true;
+            }
+        }
+    }
+    return table[targetSum];
+}
+
 console.log(canSumMemo(10, [1,2,3]));
 console.log(canSumMemo(10, [1,2,3,4]));
 
